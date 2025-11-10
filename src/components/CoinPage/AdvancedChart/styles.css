@@ -1,0 +1,23 @@
+.advanced-chart-container {
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.chart-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.chart-container {
+  height: 500px;
+  width: 100%;
+}
+
+.indicator-legend {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}

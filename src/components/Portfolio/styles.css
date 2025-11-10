@@ -1,0 +1,36 @@
+.portfolio-container {
+  padding: 2rem;
+}
+
+.portfolio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.portfolio-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.portfolio-table {
+  margin-top: 2rem;
+}
+
+.profit {
+  color: #4caf50;
+}
+
+.loss {
+  color: #f44336;
+}
