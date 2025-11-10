@@ -1,0 +1,21 @@
+.social-share-container {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--white);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.social-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.social-buttons button {
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-buttons button:hover {
+    transform: scale(1.1);
+}

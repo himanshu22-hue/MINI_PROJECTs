@@ -1,0 +1,16 @@
+.theme-toggle-btn {
+    position: fixed !important;
+    right: 2rem;
+    bottom: 2rem;
+    background-color: var(--blue) !important;
+    color: var(--white) !important;
+    padding: 0.5rem;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
