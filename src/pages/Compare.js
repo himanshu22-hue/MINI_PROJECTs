@@ -34,20 +34,33 @@ function Compare() {
   }, []);
 
   const getData = async () => {
-    setLoading(true);
-    const coins = await get100Coins();
-    if (coins) {
-      setAllCoins(coins);
-      const data1 = await getCoinData(crypto1);
-      const data2 = await getCoinData(crypto2);
-      settingCoinObject(data1, setCoin1Data);
-      settingCoinObject(data2, setCoin2Data);
+    try {
+      setLoading(true);
+      // Fetch all data in parallel
+      const [coins, data1, data2] = await Promise.all([
+        get100Coins(),
+        getCoinData(crypto1),
+        getCoinData(crypto2)
+      ]);
+
+      if (coins) setAllCoins(coins);
+      
       if (data1 && data2) {
-        // getPrices
-        const prices1 = await getPrices(crypto1, days, priceType);
-        const prices2 = await getPrices(crypto2, days, priceType);
+        settingCoinObject(data1, setCoin1Data);
+        settingCoinObject(data2, setCoin2Data);
+        
+        // Fetch prices in parallel
+        const [prices1, prices2] = await Promise.all([
+          getPrices(crypto1, days, priceType),
+          getPrices(crypto2, days, priceType)
+        ]);
+        
         settingChartData(setChartData, prices1, prices2);
-        setLoading(false);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
       }
     }
   };
