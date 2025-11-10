@@ -6,22 +6,22 @@ import { get100Coins } from "../functions/get100Coins";
 
 function Watchlist() {
   const [coins, setCoins] = useState([]);
-  const [watchlist, setWatchlist] = useState(() => {
+  const [watchlist] = useState(() => {
     return JSON.parse(localStorage.getItem("watchlist")) || [];
   });
 
   const getData = useCallback(async () => {
-    const allCoins = await get100Coins();
-    if (allCoins) {
-      setCoins(allCoins.filter((coin) => watchlist.includes(coin.id)));
+    if (watchlist.length > 0) {
+      const allCoins = await get100Coins();
+      if (allCoins) {
+        setCoins(allCoins.filter((coin) => watchlist.includes(coin.id)));
+      }
     }
   }, [watchlist]);
 
   useEffect(() => {
-    if (watchlist.length > 0) {
-      getData();
-    }
-  }, [getData]);
+    getData();
+  }, [getData, watchlist]);
 
   return (
     <div>
