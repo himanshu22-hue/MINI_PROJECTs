@@ -1,25 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Button from "../components/Common/Button";
 import Header from "../components/Common/Header";
 import TabsComponent from "../components/Dashboard/Tabs";
 import { get100Coins } from "../functions/get100Coins";
 
 function Watchlist() {
-  const watchlist = JSON.parse(localStorage.getItem("watchlist"));
   const [coins, setCoins] = useState([]);
+  const [watchlist, setWatchlist] = useState(() => {
+    return JSON.parse(localStorage.getItem("watchlist")) || [];
+  });
 
-  useEffect(() => {
-    if (watchlist) {
-      getData();
-    }
-  }, []);
-
-  const getData = async () => {
+  const getData = useCallback(async () => {
     const allCoins = await get100Coins();
     if (allCoins) {
       setCoins(allCoins.filter((coin) => watchlist.includes(coin.id)));
     }
-  };
+  }, [watchlist]);
+
+  useEffect(() => {
+    if (watchlist.length > 0) {
+      getData();
+    }
+  }, [getData]);
 
   return (
     <div>
